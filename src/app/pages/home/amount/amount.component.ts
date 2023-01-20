@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StorageHandlerService } from 'src/app/core/services/storage-handler.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { TransationDialogComponent } from '../transation-dialog/transation-dialog.component';
 import { Transazione } from 'src/app/shared/models/transation.type';
+import { ApiService } from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-amount',
@@ -11,21 +12,24 @@ import { Transazione } from 'src/app/shared/models/transation.type';
 })
 export class AmountComponent implements OnInit {
 
-  constructor(public storageService:StorageHandlerService, public dialogRef:MatDialog) { }
+  constructor(public storageService:StorageHandlerService, public dialogRef:MatDialog, public api:ApiService) { }
   
+
   updateAmount(){ 
     this.amount = JSON.parse(localStorage.getItem('amount')!)
-    this.transArr = this.storageService.storageSubject.value
-    this.transArr.forEach(el =>{
-      if(el.positivo) 
-      this.amount+=el.importo
-      else
-      this.amount-=el.importo
-    })
+      this.transArr.forEach(el =>{
+        if(el.positivo) 
+        this.amount+=el.importo
+        else
+        this.amount-=el.importo
+      })
   }
 
   ngOnInit(): void {    
-    this.updateAmount()
+    this.api.transactionsSubject.subscribe(val => {
+      this.transArr = val
+      this.updateAmount()
+    })
   }
 
   transArr!:Transazione[]
@@ -39,9 +43,11 @@ export class AmountComponent implements OnInit {
 
     dialog.afterClosed().subscribe(val=>{
       if(val){
-        localStorage.setItem('movimenti', JSON.stringify([(val), ...(JSON.parse(localStorage.getItem('movimenti')!))]))
-        this.storageService.storageSubject.next([val, ...this.storageService.transations])
-        this.updateAmount()
+        // localStorage.setItem('movimenti', JSON.stringify([(val), ...(JSON.parse(localStorage.getItem('movimenti')!))]))
+        // this.storageService.storageSubject.next([val, ...this.storageService.transations])
+        this.api.addTransazione(val).subscribe(()=>{
+          this.api.getAllTransazioni().subscribe(res => this.api.transactionsSubject.next(res))
+        })
       }      
     })
   }

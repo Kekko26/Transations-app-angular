@@ -1,14 +1,15 @@
-<div>
+<div class="card">
     <div class="left">
         <p>{{transation.data | date: 'dd/MM/yyy'}}</p>
 
-        <p *ngIf="transation.positivo" style="color: green;">€ {{transation.importo | number}}</p>
-        <p *ngIf="!transation.positivo" style="color: red;">- € {{transation.importo | number}}</p>
+        <p *ngIf="transation.positivo" style="color: green;">{{transation.importo | currency: 'EUR'}}</p>
+        <p *ngIf="!transation.positivo" style="color: red;">-{{transation.importo | currency: 'EUR'}}</p>
 
         <p>{{transation.causale}}</p>
     </div>
 
     <div class="right">
-        
+        <i class="bi bi-pencil-fill" (click)="editCard()"></i>
+        <i class="bi bi-trash3-fill" (click)="deleteCard()"></i>
     </div>
 </div>

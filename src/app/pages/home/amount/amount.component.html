@@ -1,7 +1,7 @@
 <div class="wrapper">
    <div class="saldo">
         <p>Saldo</p>
-        <h2>€ {{amount | number}}</h2>
+        <h2>{{amount | currency:'EUR'}}</h2>
    </div>
 
    <button mat-raised-button color="primary" (click)="openDialog()">Aggiungi transazione</button>
