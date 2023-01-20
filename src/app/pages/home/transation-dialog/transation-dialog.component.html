@@ -14,7 +14,7 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           
-          <mat-radio-group formControlName="positivo">
+          <mat-radio-group formControlName="entrataUscita">
             <mat-radio-button value="true">Entrata</mat-radio-button>
             <mat-radio-button value="">Uscita</mat-radio-button>
           </mat-radio-group>
@@ -30,7 +30,6 @@
      </form>
      <div class="buttons">
         <button mat-raised-button (click)="onAnnulla()">Annulla</button>
-        <button *ngIf="!data" mat-raised-button color="primary" (click)="onAggiungi()">Aggiungi</button>
-        <button *ngIf="data" mat-raised-button color="primary" (click)="onSaveEdit()">Salva</button>
+        <button mat-raised-button color="primary" (click)="onAggiungi()">Aggiungi</button>
      </div>
 </div>

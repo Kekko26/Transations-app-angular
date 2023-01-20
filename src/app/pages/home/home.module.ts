@@ -10,7 +10,6 @@ import { MaterialsModule } from 'src/app/shared/materials/materials.module';
 import { TransationDialogComponent } from './transation-dialog/transation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,8 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeRoutingModule,
     MaterialsModule,
     MatDialogModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StorageHandlerService } from 'src/app/core/services/storage-handler.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { TransationDialogComponent } from '../transation-dialog/transation-dialog.component';
 import { Transazione } from 'src/app/shared/models/transation.type';
-import { ApiService } from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-amount',
@@ -12,24 +11,21 @@ import { ApiService } from 'src/app/core/services/api.service';
 })
 export class AmountComponent implements OnInit {
 
-  constructor(public storageService:StorageHandlerService, public dialogRef:MatDialog, public api:ApiService) { }
+  constructor(public storageService:StorageHandlerService, public dialogRef:MatDialog) { }
   
-
   updateAmount(){ 
     this.amount = JSON.parse(localStorage.getItem('amount')!)
-      this.transArr.forEach(el =>{
-        if(el.positivo) 
-        this.amount+=el.importo
-        else
-        this.amount-=el.importo
-      })
+    this.transArr = this.storageService.storageSubject.value
+    this.transArr.forEach(el =>{
+      if(el.positivo) 
+      this.amount+=el.importo
+      else
+      this.amount-=el.importo
+    })
   }
 
   ngOnInit(): void {    
-    this.api.transactionsSubject.subscribe(val => {
-      this.transArr = val
-      this.updateAmount()
-    })
+    this.updateAmount()
   }
 
   transArr!:Transazione[]
@@ -43,11 +39,9 @@ export class AmountComponent implements OnInit {
 
     dialog.afterClosed().subscribe(val=>{
       if(val){
-        // localStorage.setItem('movimenti', JSON.stringify([(val), ...(JSON.parse(localStorage.getItem('movimenti')!))]))
-        // this.storageService.storageSubject.next([val, ...this.storageService.transations])
-        this.api.addTransazione(val).subscribe(()=>{
-          this.api.getAllTransazioni().subscribe(res => this.api.transactionsSubject.next(res))
-        })
+        localStorage.setItem('movimenti', JSON.stringify([(val), ...(JSON.parse(localStorage.getItem('movimenti')!))]))
+        this.storageService.storageSubject.next([val, ...this.storageService.transations])
+        this.updateAmount()
       }      
     })
   }

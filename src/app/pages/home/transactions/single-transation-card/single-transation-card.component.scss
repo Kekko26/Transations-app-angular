@@ -1,32 +1,16 @@
-div.card{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1rem;
-    border-bottom: 1px solid lightgray;
-    div{
-        &.left{
-            flex-grow: 1;
-            p{
-                &:first-child{
-                    color: gray;
-                }
-                &:nth-child(2){
-                    font-size: 1.5rem;
-                    font-weight: bold;
-                }
-            }
-        }
+div{
 
-        &.right{
-            width: 4rem;
-            display: flex;
-            justify-content: space-around;
-            i{
-                cursor: pointer;
-                font-size: 1.1rem;
-            }
+    p{
+        &:first-child{
+            color: gray;
+        }
+        &:nth-child(2){
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        &:last-child{
+            padding-bottom: 1rem;
+            border-bottom: 1px solid lightgray;
         }
     }
-  
 }
