@@ -1,0 +1,35 @@
+<div>
+    <h3>Aggiungi transazione</h3>
+    <form [formGroup]="formRef">
+         <mat-form-field>
+             <mat-label>Causale</mat-label>
+             <input matInput formControlName="causale">
+         </mat-form-field>
+         
+         <mat-form-field >
+            <mat-label>Data</mat-label>
+            <input id="ex" matInput [matDatepicker]="picker" formControlName="data">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          
+          <mat-radio-group formControlName="entrataUscita">
+            <mat-radio-button value="true">Entrata</mat-radio-button>
+            <mat-radio-button value="">Uscita</mat-radio-button>
+          </mat-radio-group>
+                  
+          <mat-form-field  >
+            <mat-label>Importo</mat-label>
+            <input matInput type="number" formControlName="importo">
+            <ng-container *ngIf="formRef.get('importo')!.touched">
+              <p style="color: red; margin-bottom: 0;" *ngIf="formRef.get('importo')!.getError('amountValidator')">L'importo deve essere maggiore di 0</p>
+            </ng-container>
+          </mat-form-field>
+
+     </form>
+     <div class="buttons">
+        <button mat-raised-button (click)="onAnnulla()">Annulla</button>
+        <button mat-raised-button color="primary" (click)="onAggiungi()">Aggiungi</button>
+     </div>
+</div>

@@ -1,0 +1,30 @@
+div.wrapper{
+
+    padding: 2rem 0;
+    width: 100%;   
+    div.saldo{
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: .5rem;
+        box-shadow: 1px 1px 15px -8px black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        p{
+            font-size: .8rem;
+            margin-bottom: 0;
+        }
+        h2{
+            margin: 0;
+            font-weight: bold;
+            font-size: 3rem;
+            height: 3rem;
+        }
+        height: 5rem;
+    }
+
+    button{
+        width: 100%;
+        margin-top: 1rem;
+    }
+}

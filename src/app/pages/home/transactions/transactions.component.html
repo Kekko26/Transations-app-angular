@@ -1,0 +1,8 @@
+<div class="wrapper">
+    <h3>ULTIME TRANSAZIONI</h3>
+    <div class="list">
+    <ng-container >
+        <app-single-transation-card *ngFor="let item of transationsList" [transation]="item"></app-single-transation-card>
+    </ng-container>
+    </div>
+</div>

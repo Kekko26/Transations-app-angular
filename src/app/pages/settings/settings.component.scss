@@ -1,0 +1,14 @@
+div.row { 
+  margin-top: 1rem;
+  mat-form-field {
+    width: 100%;
+    // border: 1px solid black;
+    // border-radius: 5px;
+    padding: 0.5rem;
+    box-shadow: 1px 1px 15px -8px black;
+    input {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+div.wrapper{
+    height: fit-content;
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    box-shadow: 1px 1px 15px -8px black;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    h3{
+        font-weight: bold;
+    }
+    div.list{
+        width: 100%;
+    }
+}

@@ -1,0 +1,14 @@
+<div>
+    <div class="left">
+        <p>{{transation.data | date: 'dd/MM/yyy'}}</p>
+
+        <p *ngIf="transation.positivo" style="color: green;">€ {{transation.importo | number}}</p>
+        <p *ngIf="!transation.positivo" style="color: red;">- € {{transation.importo | number}}</p>
+
+        <p>{{transation.causale}}</p>
+    </div>
+
+    <div class="right">
+        
+    </div>
+</div>
